@@ -1,6 +1,46 @@
-конспект лекции по RBAC
+<h2>RBAC (Role Based Access Control) References</h2>
+<h3>RBAC/GENERAL:</h3>
+<p> "Role Based Access Control"<br />
+<a href="http://en.wikipedia.org/wiki/RBAC">http://en.wikipedia.org/wiki/RBAC</a></p>
+<p> "RBAC Standards & Methods @ NIST"<br />
+<a href="http://csrc.nist.gov/rbac/">http://csrc.nist.gov/rbac/</a></p>
+<h3>LIVEUSER:</h3>
+<p> "LiveUser @ PEAR"<br />
+<a href="http://pear.php.net/package/LiveUser/">http://pear.php.net/package/LiveUser/</a></p>^M
+<p> "LiveUser Tutorial"<br />^M
+<a href="http://oss.backendmedia.com/LiveUser/Complete">http://oss.backendmedia.com/LiveUser/Complete</a></p>^M
+<p> "A series of LiveUser articles describes how to setup and use theLiveUser<br />
+authentication and permission framework"<br />
+<a href="http://www.gvngroup.be/doc/LiveUser/index.php">http://www.gvngroup.be/doc/LiveUser/index.php</a></p>
+<h3>OTHER IMPLEMENTATIONS:</h3>
+<p> "PHPgacl - Generaic Access Control Lists"<br />
+<a href="http://phpgacl.sf.net">http://phpgacl.sf.net</a></p>
+<p> "A Role-Based Access Control (RBAC) system for PHP"<br />
+<a href="http://www.tonymarston.net/php-mysql/role-based-access-control.html">
+http://www.tonymarston.net/php-mysql/role-based-access-control.html</a></p>
+<p> "dbAcl: Database-backed ACL for Cake"<br />
+<a href="http://wiki.cakephp.org/docs:acl:introduction">http://wiki.cakephp.org/docs:acl:introduction</a></p>
+<p> "PHP Authentication and Access Control Libraries"<br />
+<a href="http://www.sitepoint.com/blogs/2004/06/11/php-authentication-and-access-control-libraries/">
+http://www.sitepoint.com/blogs/2004/06/11/php-authentication-and-access-control-libraries/</a></p>
+<p> "PHP Login System with Admin Features"<br />
+<a href="http://www.evolt.org/article/PHP_Login_System_with_Admin_Features/17/60384/index.html">
+http://www.evolt.org/article/PHP_Login_System_with_Admin_Features/17/60384/index.html</a></p>
+<h3>RELATED ZF PROPOSALS:</h3>
+<p> Zend_Perms Proposal<br />
+<a href="http://framework.zend.com/wiki/display/ZFPROP/Zend_Perms+Proposal">
+http://framework.zend.com/wiki/display/ZFPROP/Zend_Perms+Proposal</a></p>
+<p> (this'll eventually move to the new wiki location ... cref: <a href="http://framework.zend.com/issues/browse/ZF-4">
+http://framework.zend.com/issues/browse/ZF-4</a> )<br />
+<a href="http://framework.zend.com/developer/browser/trunk/documentation/proposals/rejected/Zend_Auth">
+http://framework.zend.com/developer/browser/trunk/documentation/proposals/rejected/Zend_Auth</a></p>
+<h3>ZF-RELATED THREADS:</h3>
+<p> from Arnaud Limbourg ('Paul' thread) @:<br />
+<a href="http://www.zend.com/lists/fw-general/200606/msg00060.html">http://www.zend.com/lists/fw-general/200606/msg00060.html</a></p>
 
-1. Разница между аутентификацией и авторизацией.
+конспект лекции по RBAC<br />
+
+1. Разница между аутентификацией и авторизацией.<br />
 
    Аутентификация и авторизация необходимы на страницах, доступных лишь некоторым 
 пользователям. Аутентификация — проверка, является ли некто тем, за кого себя выдаёт. 
@@ -8,11 +48,15 @@
 другие средства, такие как использование смарт-карты, отпечатков пальцев и др. 
 Авторизация — проверка, может ли аутентифицированный пользователь выполнять определённые 
 действия (их часто обозначают как ресурсы). Чаще всего это определяется проверкой, 
-назначена ли пользователю определённая роль, имеющая доступ к ресурсам.
+назначена ли пользователю определённая роль, имеющая доступ к ресурсам.<br />
 
-2. Рабта с сессиями.
+2. Рабта с сессиями.<br />
 
-3. Алгоритмы хеширования пароля
+3. Алгоритмы хеширования пароля<br />
 
-4. Генерация токенов
+4. Генерация токенов<br />
+
+
+
+
 
