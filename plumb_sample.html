@@ -1,0 +1,118 @@
+<html>
+ <head>
+ <title>jsPlumb demo</title>
+ <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+ <script type="text/javascript" src="http://rocon.googlecode.com/svn/trunk/js/rounded-corners-min.js"></script>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+ <script type="text/javascript" src="jquery.jsPlumb-1.0.4.mod.js"></script>
+ <script type="text/javascript">
+ $(function()
+ {
+ // выставляем параметры по умолчанию
+ jsPlumb.setDraggableByDefault( false );
+ jsPlumb.DEFAULT_PAINT_STYLE = { strokeStyle: 'gray', gradient:{ stops:[[0,'#225588'], [1,'#558822']] }, lineWidth: 1 };
+ jsPlumb.DEFAULT_ANCHORS = [ jsPlumb.Anchors.RightMiddle, jsPlumb.Anchors.LeftMiddle ];
+ jsPlumb.DEFAULT_ENDPOINT_STYLES = [{ fillStyle:'#225588' }, { fillStyle:'#558822' }]; 
+ jsPlumb.DEFAULT_ENDPOINT = new jsPlumb.Endpoints.Triangle({width:15, height:15});
+ jsPlumb.DEFAULT_CONNECTOR = new jsPlumb.Connectors.Bezier();
+
+ var jsPlumbAnchorsRef = {
+ top : jsPlumb.Anchors.TopCenter,
+ right : jsPlumb.Anchors.RightMiddle,
+ bottom : jsPlumb.Anchors.BottomCenter,
+ left : jsPlumb.Anchors.LeftMiddle
+ }
+ 
+ // парсим иерархию объектов в верстке и строим связи
+ $('#plumbs div.window + div.tasks-box').each(function()
+ {
+ var level = $(this).prev();
+ $(this).find('> div.window').each(function(){ level.plumb({ target: this.id }) });
+ });
+ 
+ // парсим дополнительные связи между объектами
+ $('#plumbs div.window').each(function()
+ {
+ var self = $(this),
+ connections = self.attr('also-connection-with');
+ 
+ if( connections != undefined )
+ {
+ $(connections.split(/\s*;\s*/)).each(function()
+ {
+ var connectWith = this.split(/\s*:\s*/);
+ var id = connectWith[0];
+ var anchor = connectWith[1].split('-');
+ 
+ self.plumb({ target: id, anchors: [jsPlumbAnchorsRef[anchor[0]], jsPlumbAnchorsRef[anchor[1]]] });
+ });
+ }
+ });
+ 
+ // скрываем стартовые точки в каждой связе
+ $('canvas._jsPlumb_endpoint').filter(':even').hide();
+ 
+ });
+ </script>
+
+ <style type="text/css"> 
+ ._jsPlumb_connector { z-index:100; }
+ .rocon { z-index:10; }
+ 
+ .tasks-box { float:left; }
+ .tasks-box h4 { margin:0; padding-bottom:.5em; }
+ .tasks-box .window { 
+ position:relative; 
+ border:1px solid #225588;
+ background:white;
+ padding:1em; 
+ margin:1.5em 3.5em;
+ float:left; 
+ clear:left;
+ z-index:10;
+ }
+ .tasks-box a { color:#039; text-decoration:none; border-bottom:2px solid #039; }
+ .tasks-box a:hover { border-bottom:2px dotted gray; color:gray; }
+ </style>
+ 
+ </head>
+ <body>
+ 
+ <!-- sample tasks tree -->
+ <div id="plumbs" class="tasks-box">
+ <div class="window rc15" id="window1" also-connection-with="window6:bottom-top">
+ <h4>Task name 1</h4>
+ <em>Description</em>
+ </div>
+ <div class="window rc15" id="window2">
+ <h4>Task name 2</h4>
+ <em>Description</em>
+ </div>
+ <div class="tasks-box">
+ <div class="window rc15" id="window4">
+ <h4>Task name 4</h4>
+ <em>Description</em>
+ </div>
+ <div class="window rc15" id="window5">
+ <h4>Task name 5</h4>
+ <em>Description dsfa dsfdsaf das fdsaf dsf dasf sdfdsf</em>
+ </div>
+ <div class="window rc15" id="window6">
+ <h4>Task name 6</h4>
+ <em>Description</em>
+ </div>
+ <div class="tasks-box">
+ <div class="window rc15" id="window8" also-connection-with="window4:right-right; window5:right-right; window6:bottom-bottom">
+ <h4>Task name 8</h4>
+ <em>Description dsf adsf adsfdasf df</em>
+ </div>
+ </div>
+ </div>
+ <div class="window rc15" id="window3">Text block 3</div>
+ <div class="window rc15" id="window7"><a href="http://morrisonpitt.com/jsPlumb/doc/usage.html" title="Documentation">jsPlumb docs</a></div>
+ </div>
+ <br clear="all" />
+ <!-- /sample tasks tree -->
+ 
+ </body>
+</html>
